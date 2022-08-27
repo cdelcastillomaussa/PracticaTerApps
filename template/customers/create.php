@@ -7,7 +7,7 @@
             header("Location: ../../customers.php");
         }
         else{
-            header("Location: ../../customers.php?error=ingresando");
+            header("Location: ../../customers.php?error=crear");
         }
 
     }
