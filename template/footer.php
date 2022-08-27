@@ -1,6 +1,5 @@
 </div>
 </main>
-
 <footer class="bg-dark text-center text-white p-2">
     <p>&copy; Todos los derechos reservados :: Colombia 2022</p>
 </footer>
