@@ -1,18 +1,6 @@
 <?php
 
-    if(isset($_POST["guardar"]) && !empty($_POST["guardar"])){
-        include_once("../../config/conexion.php");
-        $sql = "INSERT INTO customers VALUES ('','".$_POST["nombres"]."','".$_POST["nota1"]."','".$_POST["nota2"]."','".$_POST["nota3"]."')";
-        if(mysqli_query($conection, $sql)){
-            header("Location: ../../customers.php");
-        }
-        else{
-            header("Location: ../../customers.php?error=ingresando");
-        }
-
-    }
-
-    include_once("../header.php");
+include_once("../header.php");
 ?>
 <div class="container">
     <div class="card col-md-6 offset-md-3">
