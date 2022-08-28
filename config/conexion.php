@@ -1,4 +1,4 @@
 <?php 
-    require_once('config.php');
-    $conection = mysqli_connect(SERVER, USER, KEY, DB);
+    require_once 'config.php';
+    $conection = new PDO(SERVER, USER, KEY, DB);
 ?>
