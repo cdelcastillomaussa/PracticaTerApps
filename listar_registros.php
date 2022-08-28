@@ -47,7 +47,7 @@
         $sub_array[] = $foto;
         $sub_array[] = '<button type="button" name="editar" id="'.$fila["id"].'" class="btn btn-warning btn-xs editar">Editar</button>';
         $sub_array[] = '<button type="button" name="borrar" id="'.$fila["id"].'" class="btn btn-danger btn-xs borrar">Borrar</button>';
-        $data = $sub_array;
+        $data[] = $sub_array;
     }
 
     $output = array(

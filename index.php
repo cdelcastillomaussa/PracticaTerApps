@@ -122,6 +122,17 @@
     <!-- Instanciamos a nuestro dataTable-->
     <script type="text/javascript">
       $(document).ready(function(){
+          $("#btn_crear").click(function(){
+            $("#formulario")[0].reset();
+            $(".modal-title").text("Crear usuario");
+            $("#formulario")[0].reset();
+            $("#action").val('Crear');
+            $("#operacion").val('Crear');
+            $("#foto_cargada").html("");
+
+
+          });
+
         var dataTable = $('#tablaUsuarios').DataTable({
           "processing": true,
           "serverSide": true,
@@ -151,11 +162,12 @@
         if (extension != '') {
           if (jQuery.inArray(extension, ['png', 'jpg', 'jpeg']) == -1) {
             alert('Formato de foto inválida');
+            $("#foto_usuario").val('');
             return false;
           }
         }
 
-        if (nombre != '' && apellido != '' && fecha != '') {
+        if (nombre != '' && apellido != ''){
           $.ajax({
             url: "crear.php",
             method: "POST"
@@ -171,7 +183,7 @@
             }
           })
         } else {
-          alert("Por favor asegurece de llenar todos los campos")
+          alert("Por favor asegurece de llenar todos los campos");
         }
 
       })

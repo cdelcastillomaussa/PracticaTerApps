@@ -13,7 +13,7 @@
     // Funcion para obtener el nombre de la foto
     function get_name_photo($id_usuario){
         include('conexion.php');
-        $stmt = $conection->prepare("SELECT foto FROM customers WHERE id = '$id_usuario'");
+        $stmt = $conection->prepare("SELECT foto FROM customers WHERE id = '$id'");
         $stmt->execute();
         $result = $stmt->fetchAll();
         foreach ($result as $fila) {
