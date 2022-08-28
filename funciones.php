@@ -13,9 +13,9 @@
     // Funcion para obtener el nombre de la foto
     function get_name_photo($id_usuario){
         include('conexion.php');
-        $query = $conection->prepare("SELECT foto FROM customers WHERE id = '$id_usuario'");
-        $query->execute();
-        $result = $query->fetchAll();
+        $stmt = $conection->prepare("SELECT foto FROM customers WHERE id = '$id_usuario'");
+        $stmt->execute();
+        $result = $stmt->fetchAll();
         foreach ($result as $fila) {
             return $fila['foto'];
         }
@@ -25,10 +25,10 @@
         // Funcion para obtener todos los registros
         function get_all_records(){
             include('conexion.php');
-            $query = $conection->prepare("SELECT * FROM customers " );
-            $query->execute();
-            $result = $query->fetchAll();
-            return $query->rowCount();
+            $stmt = $conection->prepare("SELECT * FROM customers " );
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+            return $stmt->rowCount();
            
     
         }
