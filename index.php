@@ -80,7 +80,7 @@
                 <br />
 
                 <label for="fecha nacimiento">Fecha nacimiento:</label>
-                <input type="date" name="fecha nacimiento" id="fecha nacimiento" class="form-control">
+                <input type="date" name="fechaNacimiento" id="fecha nacimiento" class="form-control">
                 <br />
                 
                 <label for="genero">G&eacute;nero:</label>
@@ -122,8 +122,8 @@
     <!-- Instanciamos a nuestro dataTable-->
     <script type="text/javascript">
       $(document).ready(function(){
-        $('#tablaUsuarios').DataTable({
-          //"processing": true,
+        var dataTable = $('#tablaUsuarios').DataTable({
+          "processing": true,
           "serverSide": true,
           "order": [],
           "ajax":{
@@ -138,6 +138,43 @@
           ]
         });
       });
+
+      $(document).on('submit', '#formulario' function(event){
+        event.preventDefault();
+        var nombre = $("#nombre").val();
+        var apellido = $("#apellido").val();
+        var identificacion = $("#identificacion").val();
+        var fecha = $("#fechaNacimiento").val();
+        var genero = $("#genero").val();
+        var extension = $("#foto_usuario").val().split('.').pop().toLowerCase();
+
+        if (extension != '') {
+          if (jQuery.inArray(extension, ['png', 'jpg', 'jpeg']) == -1) {
+            alert('Formato de foto inválida');
+            return false;
+          }
+        }
+
+        if (nombre != '' && apellido != '' && fecha != '') {
+          $.ajax({
+            url: "crear.php",
+            method: "POST"
+            data:new FormData(this),
+            contentType:false,
+            processData:false,
+            success:function(data)
+            {
+              alert(data);
+              $('#formulario')[0].reset();
+              $('$modalUsuario').modal.hide();
+              dataTable.ajax.reload();
+            }
+          })
+        } else {
+          alert("Por favor asegurece de llenar todos los campos")
+        }
+
+      })
 
     </script>
 

@@ -57,5 +57,5 @@
         "data"              => $data
     );
 
-    echo json_decode($output);
+    echo json_encode($output);
 
