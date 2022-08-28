@@ -21,7 +21,7 @@
   </head>
   <body>
 
-    <div class="container">
+    <div class="container fondo">
 
         <h1 class="text-center ">CRUD [ PHP | Ajax | DPO | Datatables.js ]</h1>
         <p class="text-center">&copy; Todos los derechos reservados :: Colombia 2022</p>
@@ -53,7 +53,6 @@
                     </tr>
                 </thead>
             </table>
-
         </div>
     </div>
 
@@ -87,6 +86,8 @@
                 <label for="genero">G&eacute;nero:</label>
                 <input type="text" name="genero" id="genero" class="form-control">
                 <br />
+
+                
 
                 <label for="foto">Seleccione foto</label>
                 <input type="file" name="foto_usuario" id="foto_usuario" class="form-control">
