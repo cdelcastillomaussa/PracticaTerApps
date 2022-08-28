@@ -21,7 +21,7 @@
 
     <div class="container">
 
-        <h1 class="text-center ">CRUD | PHP | Ajax | DPO | Datatables.js</h1>
+        <h1 class="text-center ">CRUD [ PHP | Ajax | DPO | Datatables.js ]</h1>
         <p class="text-center">&copy; Todos los derechos reservados :: Colombia 2022</p>
 
         <div class="row">
