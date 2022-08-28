@@ -82,9 +82,16 @@
                 <label for="fecha nacimiento">Fecha nacimiento:</label>
                 <input type="date" name="fecha nacimiento" id="fecha nacimiento" class="form-control">
                 <br />
-
+                
                 <label for="genero">G&eacute;nero:</label>
-                <input type="text" name="genero" id="genero" class="form-control">
+              <div class="form-control">
+                <label for="genero">Masculino
+                    <input type="radio" name="genero" id="genero" value="masculino">
+                </label>
+                <label for="genero">Femenino
+                    <input type="radio" name="genero" id="genero" value="femenino">
+                </label>
+              </div>
                 <br />
 
                 
