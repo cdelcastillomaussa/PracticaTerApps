@@ -1,6 +1,5 @@
 <?php
-
-include_once("../header.php");
+    include_once("../header.php");
 ?>
 <div class="container">
     <div class="card col-md-6 offset-md-3">
