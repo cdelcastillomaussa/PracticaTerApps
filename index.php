@@ -79,8 +79,8 @@
                 <input type="text" name="identificacion" id="identificacion" class="form-control">
                 <br />
 
-                <label for="fecha nacimiento">Fecha nacimiento:</label>
-                <input type="date" name="fechaNacimiento" id="fecha nacimiento" class="form-control">
+                <label for="fecha">Fecha nacimiento:</label>
+                <input type="date" name="fecha" id="fecha" class="form-control">
                 <br />
                 
                 <label for="genero">G&eacute;nero:</label>
@@ -120,19 +120,9 @@
    
 
     <!-- Instanciamos a nuestro dataTable-->
+    
     <script type="text/javascript">
-      $(document).ready(function(){
-          $("#btn_crear").click(function(){
-            $("#formulario")[0].reset();
-            $(".modal-title").text("Crear usuario");
-            $("#formulario")[0].reset();
-            $("#action").val('Crear');
-            $("#operacion").val('Crear');
-            $("#foto_cargada").html("");
-
-
-          });
-
+    
         var dataTable = $('#tablaUsuarios').DataTable({
           "processing": true,
           "serverSide": true,
@@ -148,45 +138,18 @@
             },
           ]
         });
-      });
 
-      $(document).on('submit', '#formulario' function(event){
-        event.preventDefault();
-        var nombre = $("#nombre").val();
-        var apellido = $("#apellido").val();
-        var identificacion = $("#identificacion").val();
-        var fecha = $("#fechaNacimiento").val();
-        var genero = $("#genero").val();
-        var extension = $("#foto_usuario").val().split('.').pop().toLowerCase();
+      
+        
 
-        if (extension != '') {
-          if (jQuery.inArray(extension, ['png', 'jpg', 'jpeg']) == -1) {
-            alert('Formato de foto inválida');
-            $("#foto_usuario").val('');
-            return false;
-          }
-        }
+        
+      
 
-        if (nombre != '' && apellido != ''){
-          $.ajax({
-            url: "crear.php",
-            method: "POST"
-            data:new FormData(this),
-            contentType:false,
-            processData:false,
-            success:function(data)
-            {
-              alert(data);
-              $('#formulario')[0].reset();
-              $('$modalUsuario').modal.hide();
-              dataTable.ajax.reload();
-            }
-          })
-        } else {
-          alert("Por favor asegurece de llenar todos los campos");
-        }
+      
 
-      })
+
+
+
 
     </script>
 

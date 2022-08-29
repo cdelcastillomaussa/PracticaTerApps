@@ -8,8 +8,8 @@
     $query = "SELECT * FROM customers ";
 
     if (isset($POST["search"]["value"])) {
-        $query .= 'WHERE nombre LIKE "%' . $POST["search"]["value"] . '%" ';
-        $query .= 'OR apellido LIKE "%' . $POST["search"]["value"] . '%" ';
+        $query .= 'WHERE nombre LIKE "% ' . $POST["search"]["value"] . '%" ';
+        $query .= 'OR apellido LIKE "% ' . $POST["search"]["value"] . '%" ';
 
     }
 
@@ -24,7 +24,7 @@
         $query .= 'LIMIT ' . $_POST["start"] . ',' . $_POST["length"];
     }
 
-    $stmt = $conection->prepare($query);
+    $stmt = $conexion->prepare($query);
     $stmt->execute();
     $result = $stmt->fetchAll();
 
@@ -33,7 +33,7 @@
     foreach ($result as $fila) {
         $foto = '';
         if ($fila['foto'] != '') {
-            $foto = '<img src="img/' . $fila['foto'] . '" class="img-thumbnail" width="50" heigth="35"';
+            $foto = '<img src="img/' . $fila['foto'] . '" class="img-thumbnail" width="50" heigth="35" />';
         } else {
             $foto = '';
         }
@@ -42,11 +42,11 @@
         $sub_array[] = $fila['nombre'];
         $sub_array[] = $fila['apellido'];
         $sub_array[] = $fila['identificacion'];
-        $sub_array[] = $fila['fecha nacimiento'];
+        $sub_array[] = $fila['fecha de nacimiento'];
         $sub_array[] = $fila['genero'];
         $sub_array[] = $foto;
-        $sub_array[] = '<button type="button" name="editar" id="'.$fila["id"].'" class="btn btn-warning btn-xs editar">Editar</button>';
-        $sub_array[] = '<button type="button" name="borrar" id="'.$fila["id"].'" class="btn btn-danger btn-xs borrar">Borrar</button>';
+        $sub_array[] = '<button type="button" name="editar" id="'.$fila['id'].'" class="btn btn-warning btn-xs editar">Editar</button>';
+        $sub_array[] = '<button type="button" name="borrar" id="'.$fila['id'].'" class="btn btn-danger btn-xs borrar">Borrar</button>';
         $data[] = $sub_array;
     }
 
