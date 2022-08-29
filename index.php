@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 
         <!-- Hacemos uso de bootstrap icons -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
         <!-- Custom CSS-->
         <link rel="stylesheet" href="css/styles.css">
@@ -27,7 +27,7 @@
         <p class="text-center">&copy; Todos los derechos reservados :: Colombia 2022</p>
 
         <div class="row">
-            <div class="col-2 offset-10">
+            <div class="col-2 offset-0">
                 <div class="text-center">
                     <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modalUsuario" id="btn_crear">
@@ -40,7 +40,7 @@
         <br />
         <!-- Tabla de datos-->
         <div class="table-responsive">
-            <table id="datos_usuario" class="table table-bordered table-striped">
+            <table id="tablaUsuarios" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -79,8 +79,8 @@
                 <input type="text" name="identificacion" id="identificacion" class="form-control">
                 <br />
 
-                <label for="fecha nacimiento">Fecha nacimiento:</label>
-                <input type="date" name="fecha nacimiento" id="fecha nacimiento" class="form-control">
+                <label for="fecha">Fecha nacimiento:</label>
+                <input type="date" name="fecha" id="fecha" class="form-control">
                 <br />
                 
                 <label for="genero">G&eacute;nero:</label>
@@ -93,8 +93,6 @@
                 </label>
               </div>
                 <br />
-
-                
 
                 <label for="foto">Seleccione foto</label>
                 <input type="file" name="foto_usuario" id="foto_usuario" class="form-control">
@@ -115,9 +113,46 @@
 </div>
 
     <!-- Bootstrap js - JQuery js -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>-->
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+   
+
+    <!-- Instanciamos a nuestro dataTable-->
+    
+    <script type="text/javascript">
+    
+        var dataTable = $('#tablaUsuarios').DataTable({
+          "processing": true,
+          "serverSide": true,
+          "order": [],
+          "ajax":{
+            url: "listar_registros.php",
+            type: "POST"
+          },
+          "columnsDefs":[
+            {
+              "targets":[ 0, 5 ],
+              "orderable":false,
+            },
+          ]
+        });
+
+      
+        
+
+        
+      
+
+      
+
+
+
+
+
+    </script>
+
   </body>
   
 </html>
