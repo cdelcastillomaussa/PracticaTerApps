@@ -30,7 +30,7 @@
             <div class="col-2 offset-0">
                 <div class="text-center">
                     <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modalUsuario" id="btn_crear">
+                        <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modalUsuario" id="botonCrear">
                         <i class="bi bi-plus-circle-fill"></i> Crear
                         </button>
                 </div>
@@ -84,19 +84,12 @@
                 <br />
                 
                 <label for="genero">G&eacute;nero:</label>
-              <div class="form-control">
-                <label for="genero">Masculino
-                    <input type="radio" name="genero" id="genero" value="masculino">
-                </label>
-                <label for="genero">Femenino
-                    <input type="radio" name="genero" id="genero" value="femenino">
-                </label>
-              </div>
+                <input type="text" name="genero" id="genero" class="form-control">
                 <br />
 
                 <label for="foto">Seleccione foto</label>
                 <input type="file" name="foto_usuario" id="foto_usuario" class="form-control">
-                <span id="imagen_cargada"></span>
+                <span id="foto_usuario"></span>
                 <br />
 
             </div>
@@ -121,36 +114,80 @@
 
     <!-- Instanciamos a nuestro dataTable-->
     
+
+
+
+
     <script type="text/javascript">
-    
-        var dataTable = $('#tablaUsuarios').DataTable({
-          "processing": true,
-          "serverSide": true,
-          "order": [],
-          "ajax":{
-            url: "listar_registros.php",
-            type: "POST"
+        $( document ).ready(function(){
+            $("#botonCrear").click(function(){
+              $("#formulario")[0].reset();
+              $(".modalUsuario")[0].reset();
+              $("#action").val("Crear");
+              $("#operacion").val("Crear");
+              $("#foto_usuario").html("");
+
+
+
+            });
+           var dataTable =$('#tablaUsuarios').DataTable({
+              "processing": true,
+              "serverSide": true,
+              "order": [],
+              "ajax":{
+                  url: "listar_registros.php",
+                  type: "POST"
           },
           "columnsDefs":[
-            {
-              "targets":[ 0, 5 ],
+              {
+              "targets": [0,5],
               "orderable":false,
-            },
-          ]
+              },
+            ]
+           });
+
+           //insercion 
+
+           $( document ).on('submit', '#formulario', function(event){
+                event.preventDefault();
+                var nombre = $("#nombre").val();
+                var apellido = $("#apellido").val();
+                var identificacion = $("#identificacion").val();
+                var fecha = $("#fecha").val();
+                var genero = $("#genero").val();
+                var extension = $("#foto_usuario").val().split('.').pop().toLowerCase();
+
+          if (extension != '') {
+            if (jQuery.inArray(extension, ['png', 'jpg', 'jpeg']) == -1) {
+              alert("Formato de foto inválida");
+              $("#foto_usuario").val('');
+              return false;
+              
+            }
+          }
+
+          if (nombre != '' && apellido != ''){
+            $.ajax({
+              url: "crear.php",
+              method: "POST",
+              data:new FormData(this),
+              contentType:false,
+              processData:false,
+              success: function(data)
+              {
+                alert(data);
+                $('#formulario')[0].reset();
+                $('$modalUsuario').modal.hide();
+                dataTable.ajax.reload();
+              }
+            });
+
+          } else {
+            alert("Por favor asegurece de llenar todos los campos");
+          }
+
         });
-
-      
-        
-
-        
-      
-
-      
-
-
-
-
-
+    });
     </script>
 
   </body>
