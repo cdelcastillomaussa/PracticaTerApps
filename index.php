@@ -50,6 +50,8 @@
                         <th>Fecha nacimiento</th>
                         <th>G&eacute;nero</th>
                         <th>Foto</th>
+                        <th>Editar</th>
+                        <th>Borrar</th>
                     </tr>
                 </thead>
             </table>
@@ -89,7 +91,7 @@
 
                 <label for="foto">Seleccione foto</label>
                 <input type="file" name="foto_usuario" id="foto_usuario" class="form-control">
-                <span id="foto_usuario"></span>
+                <span id="foto_subida"></span>
                 <br />
 
             </div>
@@ -119,13 +121,14 @@
 
 
     <script type="text/javascript">
+
         $( document ).ready(function(){
             $("#botonCrear").click(function(){
               $("#formulario")[0].reset();
-              $(".modalUsuario")[0].reset();
+              $(".modal-title").text("Crear Usuario");
               $("#action").val("Crear");
               $("#operacion").val("Crear");
-              $("#foto_usuario").html("");
+              $("#foto_subida").html("");
 
 
 

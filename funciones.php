@@ -1,11 +1,11 @@
 <?php
     // Funcion para subir foto
     function cargar_foto(){
-        if (isset($_FILES["foto_usuario"])) {
-            $extension = explode('.', $_FILES["foto_usuario"]['name']);
+        if (isset($_FILES["foto"])) {
+            $extension = explode('.', $_FILES["foto"]['name']);
             $new_name = rand() . '.' . $extension[1];
             $location = './img/' . $new_name;
-            move_uploaded_file($_FILES["foto_usuario"]['tmp_name'], $location);
+            move_uploaded_file($_FILES["foto"]['tmp_name'], $location);
             return $new_name;
         }
     }
@@ -17,7 +17,7 @@
         $stmt->execute();
         $result = $stmt->fetchAll();
         foreach ($result as $fila) {
-            return $fila['foto'];
+            return $fila["foto"];
         }
 
     }
