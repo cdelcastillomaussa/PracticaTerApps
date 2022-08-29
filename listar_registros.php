@@ -5,7 +5,7 @@
 
     $query = '';
     $output = array();
-    $query = "SELECT * FROM customers ";
+    $query = " SELECT * FROM customers ";
 
     if (isset($POST["search"]["value"])) {
         $query .= 'WHERE nombre LIKE "%' . $POST["search"]["value"] . '%" ';

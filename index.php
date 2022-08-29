@@ -151,7 +151,7 @@
 
            //insercion 
 
-           $( document ).on('submit', '#formulario', function(event){
+           $( document ).on('submit', '#formulario', function(event) {
                 event.preventDefault();
                 var nombre = $("#nombre").val();
                 var apellido = $("#apellido").val();
