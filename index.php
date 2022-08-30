@@ -148,8 +148,8 @@
             },
           ]
         });
-      });
 
+      // Codigo para la insercion de datos
       $( document ).on("submit", "#formulario", function(e){
         e.preventDefault();
         var nombre = $( "#nombre" ).val();
@@ -191,6 +191,40 @@
 
 
       });
+
+      //Funcionalidad de editar
+      $( document ).on('click', '.editar', function(){
+        var id_usuario = $(this).attr("id");
+        $.ajax({
+          url: "listar_registro.php",
+          method: "POST",
+          data:{id_usuario:id_usuario},
+          dataType: "json",
+          success:function(data)
+          {
+            
+            $( "#modalUsuario" ).modal('show');
+            $( ".modal-title" ).text("Editar Usuario");
+            $( "#id_usuario" ).val(id_usuario);
+            $( "#nombre" ).val(data.nombre);
+            $( "#apellido" ).val(data.apellido);
+            $( "#identificacion" ).val(data.identificacion);
+            $( "#fecha_nacimiento" ).val(data.fecha_nacimiento);
+            $( "#genero" ).val(data.genero);
+            $( "#imagen_subida" ).html(data.imagen_usuario);
+            $( "#action" ).val("Editar");
+            $( "#operacion" ).val("Editar");
+          },
+          
+        
+        });
+
+      });
+    });
+
+      
+
+      
 
     </script>
 
