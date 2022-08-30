@@ -150,8 +150,8 @@
         });
 
       // Codigo para la insercion de datos
-      $( document ).on("submit", "#formulario", function(e){
-        e.preventDefault();
+    $( document ).on("submit", "#formulario", function(){
+      
         var nombre = $( "#nombre" ).val();
         var apellido = $( "#apellido" ).val();
         var identificacion = $( "#identificacion" ).val();
@@ -193,6 +193,7 @@
 
 
       });
+      
 
       //Funcionalidad de editar
       $( document ).on('click', '.editar', function(){
@@ -223,9 +224,11 @@
         
         });
 
-      });
+      }); 
     });
 
+
+    
       
 
       
