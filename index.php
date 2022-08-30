@@ -88,10 +88,10 @@
                 <label for="genero">G&eacute;nero:</label>
                 <div class="form-control">
                     <label for="genero">Masculino
-                      <input type="radio" name="genero" id="genero" value="masculino">
+                      <input type="radio" name="genero" id="genero1" value="masculino">
                     </label>
                     <label for="genero">Femenino
-                      <input type="radio" name="genero" id="genero" value="masculino">
+                      <input type="radio" name="genero" id="genero2" value="femenino">
                     </label>
                 </div>
                 
@@ -225,6 +225,32 @@
         });
 
       }); 
+      
+      //Funcionalidad de borrar registro
+      $( document ).on('click', '.borrar', function(){
+        var id_usuario = $(this).attr("id");
+            if(confirm("Esta seguro de borrar este registro" + id_usuario))
+              {
+          
+                  $.ajax({
+                      url: "borrar.php",
+                      method: "POST",
+                      data:{id_usuario:id_usuario},
+                      success:function(data)
+                      {
+                      alert(data);
+                      dataTable.ajax.reload();
+                      }
+
+                  });
+              } else 
+              {
+                return false;
+              } 
+
+        
+      }); 
+
     });
 
 
