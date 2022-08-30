@@ -86,8 +86,15 @@
                 <br />
                 
                 <label for="genero">G&eacute;nero:</label>
-                <input type="text" name="genero" id="genero" class="form-control">
-                <br />
+                <div class="form-control">
+                    <label for="genero">Masculino
+                      <input type="radio" name="genero" id="genero" value="masculino">
+                    </label>
+                    <label for="genero">Femenino
+                      <input type="radio" name="genero" id="genero" value="masculino">
+                    </label>
+                </div>
+                
 
                 <label for="imagen">Seleccione una imagen</label>
                 <input type="file" name="imagen_usuario" id="imagen_usuario" class="form-control">
