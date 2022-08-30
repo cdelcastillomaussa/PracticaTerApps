@@ -146,7 +146,7 @@
             "targets":[0, 5],
             "orderable":false
             },
-          ]
+          ],
         });
 
       // Codigo para la insercion de datos
