@@ -86,16 +86,8 @@
                 <br />
                 
                 <label for="genero">G&eacute;nero:</label>
-                <div class="form-control">
-                <label for="genero"> Masculino
-                  <input type="radio" name="genero" id="genero">
-                </label>
-                
-                <label for="genero"> Femenino
-                  <input type="radio" name="genero" id="genero">
-                </label>
-
-                </div>
+                <input type="text" name="genero" id="genero" class="form-control">
+                <br />
 
                 <label for="imagen">Seleccione una imagen</label>
                 <input type="file" name="imagen_usuario" id="imagen_usuario" class="form-control">
@@ -125,6 +117,15 @@
     <!-- Instanciamos a nuestro dataTable-->
     <script type="text/javascript">
       $( document ).ready(function(){
+          $( "#botonCrear" ).click(function(){
+              $( "#formulario" )[0].reset();
+              $( ".modal-title" ).text("Crear usuario");
+              $( "#action" ).val("Crear");
+              $( "#operacion" ).val("Crear");
+              $( "#imagen_subida" ).html("");
+          });
+
+
         var dataTable = $('#tablaUsuarios').DataTable({
           "processing":true,
           "serverSide":true,
@@ -140,6 +141,48 @@
             },
           ]
         });
+      });
+
+      $( document ).on("submit", "#formulario", function(e){
+        e.preventDefault();
+        var nombre = $( "#nombre" ).val();
+        var apellido = $( "#apellido" ).val();
+        var identificacion = $( "#identificacion" ).val();
+        var fecha_nacimiento = $( "#fecha_nacimiento" ).val();
+        var genero = $( "#genero" ).val();
+        var extension = $( "#imagen_usuario" ).val().split('.').pop().toLowerCase();
+
+        if(extension != ''){
+            if(jQuery.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) == -1){
+                alert("Formato de imagen invalido");
+                $( "#imagen_usuario" ).val('');
+                return false;
+                
+            }
+
+        }
+        if(nombre != '' && apellido != '' && identificacion != ''){
+            $.ajax({
+              url: "crear.php",
+              method: "POST",
+              data:new FormData(this),
+              contentType:false,
+              processData:false,
+              success:function(data)
+              {
+                  alert(data);
+                  $( "#formulario" )[0].reset();
+                  $( "#modalUsuario" ).modal.hide();
+                  dataTable.ajax.reload();
+
+              }
+
+          });
+        }else {
+            alert("Asegurece de llenar todos los campos");
+        }
+
+
       });
 
     </script>
