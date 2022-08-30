@@ -203,18 +203,20 @@
           success:function(data)
           {
             
-            $( "#modalUsuario" ).modal('show');
-            $( ".modal-title" ).text("Editar Usuario");
-            $( "#id_usuario" ).val(id_usuario);
-            $( "#nombre" ).val(data.nombre);
-            $( "#apellido" ).val(data.apellido);
-            $( "#identificacion" ).val(data.identificacion);
-            $( "#fecha_nacimiento" ).val(data.fecha_nacimiento);
-            $( "#genero" ).val(data.genero);
-            $( "#imagen_subida" ).html(data.imagen_usuario);
-            $( "#action" ).val("Editar");
-            $( "#operacion" ).val("Editar");
-          },
+              $( "#modalUsuario" ).modal('show');
+              $( ".modal-title" ).text("Editar Usuario");
+              $( "#id_usuario" ).val(id_usuario);
+              $( "#nombre" ).val(data.nombre);
+              $( "#apellido" ).val(data.apellido);
+              $( "#identificacion" ).val(data.identificacion);
+              $( "#fecha_nacimiento" ).val(data.fecha_nacimiento);
+              $( "#genero" ).val(data.genero);
+              $( "#imagen_subida" ).html(data.imagen_usuario);
+              $( "#action" ).val("Editar");
+              $( "#operacion" ).val("Editar");
+
+          }, 
+          
           
         
         });
