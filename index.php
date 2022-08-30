@@ -124,8 +124,24 @@
 
     <!-- Instanciamos a nuestro dataTable-->
     <script type="text/javascript">
+      $( document ).ready(function(){
+        var dataTable = $('#tablaUsuarios').DataTable({
+          "processing":true,
+          "serverSide":true,
+          "order":[],
+          "ajax":{
+            url: "listar_registros.php",
+            type: "POST"
+          },
+          "columnsDefs":[
+            {
+            "targets":[0, 5],
+            "orderable":false
+            },
+          ]
+        });
+      });
 
-    
     </script>
 
   </body>
