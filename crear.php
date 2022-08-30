@@ -8,8 +8,10 @@ if($_POST["operacion"] == "Crear"){
     if($_FILES["imagen_usuario"]['name'] != ''){
         $imagen = subir_imagen();
     }
+    
     $stmt = $conexion->prepare("INSERT INTO usuarios(nombre, apellido, identificacion, fecha_nacimiento, genero, imagen)VALUES(:nombre, :apellido, :identificacion, :fecha_nacimiento, :genero, :imagen)");
     $resultado = $stmt->execute(
+
         array(
             ':nombre'       => $_POST["nombre"],
             ':apellido'       => $_POST["apellido"],

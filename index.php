@@ -159,12 +159,14 @@
         var genero = $( "#genero" ).val();
         var extension = $( "#imagen_usuario" ).val().split('.').pop().toLowerCase();
 
+
         if(extension != ''){
             if(jQuery.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) == -1){
                 alert("Formato de imagen invalido");
                 $( "#imagen_usuario" ).val('');
                 return false;
                 
+
             }
 
         }

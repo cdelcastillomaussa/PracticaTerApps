@@ -6,6 +6,7 @@
     $salida = array();
     $query = "SELECT * FROM usuarios ";
 
+
     if (isset($_POST["search"]["value"])) {
         $query .= 'WHERE nombre LIKE "%' . $_POST["search"]["value"] . '%" ';
         $query .= 'OR apellido LIKE "%' . $_POST["search"]["value"] . '%" ';
