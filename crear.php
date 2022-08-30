@@ -5,10 +5,10 @@ include('funciones.php');
 
 if ($_POST["operacion"] == "Crear") {
     $foto = '';
-    if($_FILES["foto_usuario"]['name'] != ''){
-        $foto = cargar_foto();
+    if($_FILES["imagen_usuario"]['name'] != ''){
+        $foto = subir_imagen();
     }
-    $stmt = $conexion->prepare("INSERT INTO customers (nombre, apellido, identificacion, fecha de nacimiento, genero, foto) VALUES (:nombre, :apellido, :identificacion, :fecha de nacimiento, :genero, :foto) ");
+    $stmt = $conexion->prepare("INSERT INTO customers ( nombre, apellido, identificacion, fecha de nacimiento, genero, foto ) VALUES ( :nombre, :apellido, :identificacion, :fecha de nacimiento, :genero, :foto ) ");
 
     $result = $stmt->execute(
         array(
@@ -16,8 +16,7 @@ if ($_POST["operacion"] == "Crear") {
             ':apellido'       => $_POST["apellido"],
             ':identificacion'       => $_POST["identificacion"],
             ':fecha de nacimiento'       => $_POST["fecha"],
-            ':genero'       =>  $_POST["genero"],
-            ':foto'       => $foto
+            ':genero'                       => $_POST["genero"],
         )
     );
 
