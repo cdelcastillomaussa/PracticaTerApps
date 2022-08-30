@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-08-2022 a las 18:14:58
+-- Tiempo de generación: 30-08-2022 a las 03:04:53
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -18,33 +18,33 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `crud_php_dpo`
+-- Base de datos: `crud_ajax_dpo`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `customers`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
-CREATE TABLE `customers` (
+CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(150) NOT NULL,
-  `apellido` varchar(150) NOT NULL,
-  `identificacion` varchar(10) NOT NULL,
-  `fecha de nacimiento` date NOT NULL,
-  `genero` varchar(10) NOT NULL,
-  `foto` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `nombre` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
+  `apellido` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
+  `identificacion` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
+  `fecha_nacimiento` date NOT NULL,
+  `genero` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
+  `imagen` varchar(250) COLLATE utf8_spanish2_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `customers`
+-- Indices de la tabla `usuarios`
 --
-ALTER TABLE `customers`
+ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -52,9 +52,9 @@ ALTER TABLE `customers`
 --
 
 --
--- AUTO_INCREMENT de la tabla `customers`
+-- AUTO_INCREMENT de la tabla `usuarios`
 --
-ALTER TABLE `customers`
+ALTER TABLE `usuarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 

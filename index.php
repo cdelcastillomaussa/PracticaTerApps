@@ -49,7 +49,7 @@
                         <th>Identificaci&oacute;n</th>
                         <th>Fecha nacimiento</th>
                         <th>G&eacute;nero</th>
-                        <th>Foto</th>
+                        <th>Imagen</th>
                         <th>Editar</th>
                         <th>Borrar</th>
                     </tr>
@@ -81,17 +81,17 @@
                 <input type="text" name="identificacion" id="identificacion" class="form-control">
                 <br />
 
-                <label for="fecha">Fecha nacimiento:</label>
-                <input type="date" name="fecha" id="fecha" class="form-control">
+                <label for="fecha_nacimiento">Fecha nacimiento:</label>
+                <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control">
                 <br />
                 
                 <label for="genero">G&eacute;nero:</label>
                 <input type="text" name="genero" id="genero" class="form-control">
                 <br />
 
-                <label for="foto">Seleccione foto</label>
-                <input type="file" name="foto_usuario" id="foto_usuario" class="form-control">
-                <span id="foto_subida"></span>
+                <label for="imagen">Seleccione una imagen</label>
+                <input type="file" name="imagen_usuario" id="imagen_usuario" class="form-control">
+                <span id="imagen_subida"></span>
                 <br />
 
             </div>
@@ -115,82 +115,78 @@
    
 
     <!-- Instanciamos a nuestro dataTable-->
-    
-
-
-
-
     <script type="text/javascript">
+      $( document ).ready(function(){
+          $( "#botonCrear" ).click(function(){
+              $( "#formulario" )[0].reset();
+              $( ".modal-title" ).text("Crear usuario");
+              $( "#action" ).val("Crear");
+              $( "#operacion" ).val("Crear");
+              $( "#imagen_subida" ).html("");
+          });
 
-        $( document ).ready(function(){
-            $("#botonCrear").click(function(){
-              $("#formulario")[0].reset();
-              $(".modal-title").text("Crear Usuario");
-              $("#action").val("Crear");
-              $("#operacion").val("Crear");
-              $("#foto_subida").html("");
 
-
-
-            });
-           var dataTable =$('#tablaUsuarios').DataTable({
-              "processing": true,
-              "serverSide": true,
-              "order": [],
-              "ajax":{
-                  url: "listar_registros.php",
-                  type: "POST"
+        var dataTable = $('#tablaUsuarios').DataTable({
+          "processing":true,
+          "serverSide":true,
+          "order":[],
+          "ajax":{
+            url: "listar_registros.php",
+            type: "POST"
           },
           "columnsDefs":[
-              {
-              "targets": [0,5],
-              "orderable":false,
-              },
-            ]
-           });
+            {
+            "targets":[0, 5],
+            "orderable":false
+            },
+          ]
+        });
+      });
 
-           //insercion 
+      $( document ).on("submit", "#formulario", function(e){
+        e.preventDefault();
+        var nombre = $( "#nombre" ).val();
+        var apellido = $( "#apellido" ).val();
+        var identificacion = $( "#identificacion" ).val();
+        var fecha_nacimiento = $( "#fecha_nacimiento" ).val();
+        var genero = $( "#genero" ).val();
+        var extension = $( "#imagen_usuario" ).val().split('.').pop().toLowerCase();
 
-           $( document ).on('submit', '#formulario', function(event) {
-                event.preventDefault();
-                var nombre = $("#nombre").val();
-                var apellido = $("#apellido").val();
-                var identificacion = $("#identificacion").val();
-                var fecha = $("#fecha").val();
-                var genero = $("#genero").val();
-                var extension = $("#foto_usuario").val().split('.').pop().toLowerCase();
 
-          if (extension != '') {
-            if (jQuery.inArray(extension, ['png', 'jpg', 'jpeg']) == -1) {
-              alert("Formato de foto inválida");
-              $("#foto_usuario").val('');
-              return false;
-              
+        if(extension != ''){
+            if(jQuery.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) == -1){
+                alert("Formato de imagen invalido");
+                $( "#imagen_usuario" ).val('');
+                return false;
+                
+
             }
-          }
 
-          if (nombre != '' && apellido != ''){
+        }
+        if(nombre != '' && apellido != '' && identificacion != ''){
             $.ajax({
               url: "crear.php",
               method: "POST",
               data:new FormData(this),
               contentType:false,
               processData:false,
-              success: function(data)
+              success:function(data)
               {
-                alert(data);
-                $('#formulario')[0].reset();
-                $('$modalUsuario').modal.hide();
-                dataTable.ajax.reload();
+                  alert(data);
+                  $( "#formulario" )[0].reset();
+                  $( "#modalUsuario" ).modal.hide();
+                  dataTable.ajax.reload();
+
               }
-            });
 
-          } else {
-            alert("Por favor asegurece de llenar todos los campos");
-          }
+          });
+        }else {
+            alert("Asegurece de llenar todos los campos");
+        }
 
-        });
-    });
+
+      });
+
     </script>
 
   </body>

@@ -3,25 +3,27 @@
 include('conexion.php');
 include('funciones.php');
 
-if ($_POST["operacion"] == "Crear") {
-    $foto = '';
-    if($_FILES["foto_usuario"]['name'] != ''){
-        $foto = cargar_foto();
+if($_POST["operacion"] == "Crear"){
+    $imagen = '';
+    if($_FILES["imagen_usuario"]['name'] != ''){
+        $imagen = subir_imagen();
     }
-    $stmt = $conexion->prepare(" INSERT INTO customers (nombre, apellido, identificacion, fecha de nacimiento, genero, foto ) VALUES (:nombre, :apellido, :identificacion, :fecha de nacimiento, :genero, :foto) ");
+    
+    $stmt = $conexion->prepare("INSERT INTO usuarios(nombre, apellido, identificacion, fecha_nacimiento, genero, imagen)VALUES(:nombre, :apellido, :identificacion, :fecha_nacimiento, :genero, :imagen)");
+    $resultado = $stmt->execute(
 
-    $result = $stmt->execute(
         array(
             ':nombre'       => $_POST["nombre"],
             ':apellido'       => $_POST["apellido"],
             ':identificacion'       => $_POST["identificacion"],
-            ':fecha de nacimiento'       => $_POST["fecha"],
-            ':genero'       =>  $_POST["genero"],
-            ':foto'       => $foto
+            ':fecha_nacimiento'       => $_POST["fecha_nacimiento"],
+            ':genero'       => $_POST["genero"],
+            ':imagen'       => $imagen
+
         )
     );
+    if(!empty($resultado)){
+        echo 'Registro creado exitosamente';
 
-    if(!empty($result)){
-        echo 'Registro creado';
     }
 }
