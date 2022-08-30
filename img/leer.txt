@@ -1,0 +1,1 @@
+se creara una carpeta en el proyecto llamada img
