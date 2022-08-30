@@ -70,15 +70,15 @@
       <form method="POST" id="formulario" enctype="multipart/form-data">
             <div class="modal-content">
                 <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" id="nombre" class="form-control">
+                <input type="text" name="nombre" id="nombre" placeholder="ingrese nombre" class="form-control">
                 <br />
 
                 <label for="apellido">Apellido:</label>
-                <input type="text" name="apellido" id="apellido" class="form-control">
+                <input type="text" name="apellido" id="apellido" placeholder="ingrese apellido" class="form-control">
                 <br />
 
                 <label for="identificacion">Identificaci&oacute;n:</label>
-                <input type="text" name="identificacion" id="identificacion" class="form-control">
+                <input type="text" name="identificacion" id="identificacion" placeholder="numero de documento" class="form-control">
                 <br />
 
                 <label for="fecha_nacimiento">Fecha nacimiento:</label>
@@ -147,6 +147,9 @@
             "orderable":false
             },
           ],
+          "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+          }
         });
 
       // Codigo para la insercion de datos
